@@ -1,0 +1,26 @@
+{
+  "name": "incentera-contracts-v1",
+  "version": "1.0.0",
+  "description": "Smart contract repository for Incentera: a collaboration between glink and 81k, powered by Chainlink.",
+  "files": [
+    "*.sol"
+  ],
+  "scripts": {
+    "solhint": "solhint --config ./.solhint.json -f table 'src/**/*.sol'"
+  },
+  "devDependencies": {
+    "solhint": "^3.3.7",
+    "solhint-plugin-prettier": "^0.0.5"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/81k-ltd/incentera-contracts-v1.git"
+  },
+  "keywords": [],
+  "author": "glink <> 81k",
+  "license": "AGPL-3.0-only",
+  "bugs": {
+    "url": "https://github.com/81k-ltd/incentera-contracts-v1/issues"
+  },
+  "homepage": "https://github.com/81k-ltd/incentera-contracts-v1#readme"
+}

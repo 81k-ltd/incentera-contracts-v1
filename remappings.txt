@@ -1,0 +1,6 @@
+forge-std/=lib/forge-std/src/
+base64/=lib/base64/
+chainlink/=lib/chainlink-brownie-contracts/contracts/src/v0.8/
+hot-chain-svg/=lib/hot-chain-svg/contracts/
+openzeppelin/=lib/openzeppelin-contracts/contracts/
+solmate/=lib/solmate/src/

@@ -1,0 +1,26 @@
+[profile.default]
+solc = "0.8.15"
+bytecode_hash = "none"
+optimizer_runs = 1_000_000
+no_match_test = "FFI"
+
+[profile.intense]
+fuzz_runs = 10_000
+no_match_test = "FFI"
+verbosity = 4
+
+[profile.ffi]
+ffi = true
+fuzz_runs = 1000
+match_test = "FFI"
+no_match_test = "a^"
+verbosity = 4
+
+[profile.ci]
+ffi = true
+fuzz_runs = 10_000
+match_test = "FFI"
+no_match_test = "a^"
+verbosity = 4
+
+# See more config options https://github.com/foundry-rs/foundry/tree/master/config
