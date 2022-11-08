@@ -41,7 +41,6 @@ contract IncenteraJobDistributor is Owned {
         IncenteraReputation _incenteraReputation,
         IncenteraToken _incenteraToken,
         address _oracleNode,
-        address[] memory _participants,
         ArbitrationProvider _arbitrationProvider,
         InflationProvider _inflationProvider,
         NotifProvider _notifProvider,
@@ -51,15 +50,10 @@ contract IncenteraJobDistributor is Owned {
         INCENTERA_TOKEN = _incenteraToken;
         ORACLE_NODE = _oracleNode;
 
-        s_participants = _participants;
         s_arbitrationProvider = _arbitrationProvider;
         s_inflationProvider = _inflationProvider;
         s_notifProvider = _notifProvider;
         s_randProvider = _randProvider;
-
-        for (uint256 i; i < _participants.length; ++i) {
-            _incenteraReputation.mint(_participants[i]);
-        }
     }
 
     /**

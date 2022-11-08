@@ -52,8 +52,7 @@ contract IncenteraFixture is ProviderFixture {
             participants.push(makeAddr(string.concat("usr", utils.uint2str(i + 1))));
         }
 
-        IncenteraReputation incenteraReputationAddress =
-            IncenteraReputation(computeCreateAddress(owner, vm.getNonce(owner) + 1));
+        address incenteraReputationAddress = computeCreateAddress(owner, vm.getNonce(owner) + 1);
 
         vm.startPrank(owner, owner);
         incenteraToken =
@@ -61,16 +60,18 @@ contract IncenteraFixture is ProviderFixture {
         incenteraReputation =
             new IncenteraReputation(IncenteraJobDistributor(incenteraJobDistributorAddress), incenteraToken);
 
-        assertEq(address(incenteraReputationAddress), address(incenteraReputation), "reput");
+        assertEq(incenteraReputationAddress, address(incenteraReputation));
 
         incenteraJobDistributor = new IncenteraJobDistributor(incenteraReputation,
-        incenteraToken, address(0xDEADC0DE), participants,
+        incenteraToken, address(0xDEADC0DE),
         arbitrationProvider,
         inflationProvider,
         notifProvider,
         randProvider);
 
-        assertEq(address(incenteraJobDistributorAddress), address(incenteraJobDistributor), "jobd");
+        assertEq(incenteraJobDistributorAddress, address(incenteraJobDistributor));
+
+        incenteraJobDistributor.addParticipants(participants);
         vm.stopPrank();
     }
 }
