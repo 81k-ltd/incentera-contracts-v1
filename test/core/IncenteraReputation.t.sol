@@ -9,27 +9,45 @@ contract IncenteraReputationTest is IncenteraFixture {
         super.setUp();
     }
 
+    event Transfer(address indexed from, address indexed to, uint256 indexed id);
+
     function test_mint() public {
-        // expect revert if not job distributor
-        // vm.prank job distributor
-        // expect revert existing participant
-        // assertEq balance
-        // expect emit event
+        address newParticipant = makeAddr("newParticipant");
+        address newParticipant1 = makeAddr("newParticipant1");
+
+        vm.expectRevert();
+        incenteraReputation.mint(newParticipant);
+
+        vm.startPrank(incenteraJobDistributorAddress);
+        incenteraReputation.mint(newParticipant);
+        assertEq(incenteraReputation.balanceOf(newParticipant), 1);
+
+        vm.expectRevert();
+        incenteraReputation.mint(newParticipant);
+
+        vm.expectEmit(true, true, true, false);
+        emit Transfer(address(0), newParticipant1, 7);
+        incenteraReputation.mint(newParticipant1);
+        vm.stopPrank();
     }
 
     function test_lockReputation() public {
-        // expect revert if not job distributor
-        // vm.prank job distributor
-        // expect revert insufficient reputation
-        // increase reputation (call token address or manipulate storage)
-        // assertEq locked reputation
+        vm.expectRevert();
+        incenteraReputation.lockReputation(1, 1);
+        vm.startPrank(incenteraJobDistributorAddress);
+        vm.expectRevert();
+        incenteraReputation.lockReputation(1, 1);
+        incenteraToken.mint(1, 1);
+        incenteraReputation.lockReputation(1, 1);
+        assertEq(incenteraReputation.lockedReputation(1), 1);
         // expect emit event (no event currently, maybe should add)
     }
 
     function test_unlockReputation() public {
-        // expect revert if not job distributor
-        // vm.prank job distributor
-        // assertEq unlocked reputation (cached lockedReputation diff)
+        vm.expectRevert();
+        incenteraReputation.unlockReputation(1, 1);
+        vm.startPrank(incenteraJobDistributorAddress);
+        incenteraReputation.unlockReputation(1, 1);
         // expect emit event (no event currently, maybe should add)
     }
 
