@@ -8,7 +8,7 @@ import {IncenteraToken} from "../../src/core/IncenteraToken.sol";
 import {InflationProvider, Truflation} from "../../src/inflation/Truflation.sol";
 import {NotifProvider, PushNotifProvider} from "../../src/notif/PushNotifProvider.sol";
 import {RandProvider, ChainlinkV2RandProvider} from "../../src/rand/ChainlinkV2RandProvider.sol";
-import {DataTypes} from "src/libraries/DataTypes.sol";
+import {DataTypes} from "../../src/libraries/DataTypes.sol";
 import {utils} from "hot-chain-svg/Utils.sol";
 import {Test} from "forge-std/Test.sol";
 
