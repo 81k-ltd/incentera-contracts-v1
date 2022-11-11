@@ -139,14 +139,14 @@ contract IncenteraJobDistributor is Owned {
     /**
      * OWNER
      */
-    function addParticipants(address[] memory participants) external {
+    function addParticipants(address[] memory participants) external onlyOwner {
         for (uint256 i; i < participants.length; ++i) {
             s_participants.push(participants[i]);
             INCENTERA_REPUTATION.mint(participants[i]);
         }
     }
 
-    function addParticipant(address participant) external {
+    function addParticipant(address participant) external onlyOwner {
         _addParticipant(participant);
     }
 
