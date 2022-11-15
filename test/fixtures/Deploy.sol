@@ -6,7 +6,7 @@ import {IncenteraJobDistributor} from "../../src/core/IncenteraJobDistributor.so
 import {IncenteraReputation} from "../../src/core/IncenteraReputation.sol";
 import {IncenteraToken} from "../../src/core/IncenteraToken.sol";
 import {InflationProvider, Truflation} from "../../src/inflation/Truflation.sol";
-import {NotifProvider, PushNotifProvider} from "../../src/notif/PushNotifProvider.sol";
+// import {NotifProvider, PushNotifProvider} from "../../src/notif/PushNotifProvider.sol";
 import {RandProvider, ChainlinkV2RandProvider} from "../../src/rand/ChainlinkV2RandProvider.sol";
 import {DataTypes} from "../../src/libraries/DataTypes.sol";
 import {utils} from "hot-chain-svg/Utils.sol";
@@ -16,7 +16,7 @@ import {Test} from "forge-std/Test.sol";
 contract ProviderFixture is Test {
     ArbitrationProvider public arbitrationProvider;
     InflationProvider public inflationProvider;
-    NotifProvider public notifProvider;
+    // NotifProvider public notifProvider;
     RandProvider public randProvider;
     address public incenteraJobDistributorAddress;
     address public owner;
@@ -32,7 +32,7 @@ contract ProviderFixture is Test {
         arbitrationProvider =
             new UniversalAdapter(IncenteraJobDistributor(incenteraJobDistributorAddress), address(0xDEADC0DE));
         inflationProvider = new Truflation(IncenteraJobDistributor(incenteraJobDistributorAddress));
-        notifProvider = new PushNotifProvider(IncenteraJobDistributor(incenteraJobDistributorAddress));
+        // notifProvider = new PushNotifProvider(IncenteraJobDistributor(incenteraJobDistributorAddress));
         randProvider = new ChainlinkV2RandProvider(IncenteraJobDistributor(incenteraJobDistributorAddress), 1337);
         vm.stopPrank();
     }
@@ -66,7 +66,7 @@ contract IncenteraFixture is ProviderFixture {
         incenteraToken, address(0xDEADC0DE),
         arbitrationProvider,
         inflationProvider,
-        notifProvider,
+        // notifProvider,
         randProvider);
 
         assertEq(incenteraJobDistributorAddress, address(incenteraJobDistributor));

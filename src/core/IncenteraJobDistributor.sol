@@ -10,7 +10,7 @@ import {ArbitrationProvider} from "../arbitration/ArbitrationProvider.sol";
 import {IncenteraReputation} from "./IncenteraReputation.sol";
 import {IncenteraToken} from "./IncenteraToken.sol";
 import {InflationProvider} from "../inflation/InflationProvider.sol";
-import {NotifProvider} from "../notif/NotifProvider.sol";
+// import {NotifProvider} from "../notif/NotifProvider.sol";
 import {RandProvider} from "../rand/RandProvider.sol";
 
 contract IncenteraJobDistributor is Owned {
@@ -24,7 +24,7 @@ contract IncenteraJobDistributor is Owned {
 
     ArbitrationProvider public s_arbitrationProvider;
     InflationProvider public s_inflationProvider;
-    NotifProvider public s_notifProvider;
+    // NotifProvider public s_notifProvider;
     RandProvider public s_randProvider;
     address[] public s_participants;
     uint256 public s_jobIds;
@@ -43,7 +43,7 @@ contract IncenteraJobDistributor is Owned {
         address _oracleNode,
         ArbitrationProvider _arbitrationProvider,
         InflationProvider _inflationProvider,
-        NotifProvider _notifProvider,
+        // NotifProvider _notifProvider,
         RandProvider _randProvider
     ) Owned(msg.sender) {
         INCENTERA_REPUTATION = _incenteraReputation;
@@ -52,7 +52,7 @@ contract IncenteraJobDistributor is Owned {
 
         s_arbitrationProvider = _arbitrationProvider;
         s_inflationProvider = _inflationProvider;
-        s_notifProvider = _notifProvider;
+        // s_notifProvider = _notifProvider;
         s_randProvider = _randProvider;
     }
 
@@ -252,7 +252,7 @@ contract IncenteraJobDistributor is Owned {
             );
         }
 
-        _notifyParticipants(participants);
+        // _notifyParticipants(participants);
 
         emit Events.RandomnessAccepted(randomWords);
     }
@@ -266,21 +266,22 @@ contract IncenteraJobDistributor is Owned {
     /**
      * NOTIFICATION
      */
-    function _notifyParticipants(address[] memory participants) internal {
-        s_notifProvider.notifyRecipients(participants);
+    // Push app is only available on Ethereum and Polygon mainnet, so we shall not be using this for now
+    // function _notifyParticipants(address[] memory participants) internal {
+    //     s_notifProvider.notifyRecipients(participants);
 
-        emit Events.ParticipantsNotified(participants);
-    }
+    //     emit Events.ParticipantsNotified(participants);
+    // }
 
-    function _notifyParticipant(address participant) internal {
-        s_notifProvider.notifyRecipient(participant);
+    // function _notifyParticipant(address participant) internal {
+    //     s_notifProvider.notifyRecipient(participant);
 
-        // emit Events.ParticipantNotified(participant);
-    }
+    //     // emit Events.ParticipantNotified(participant);
+    // }
 
-    function upgradeNotifProvider(NotifProvider newNotifProvider) external onlyOwner {
-        emit Events.NotifProviderUpgraded(s_notifProvider = newNotifProvider);
-    }
+    // function upgradeNotifProvider(NotifProvider newNotifProvider) external onlyOwner {
+    //     emit Events.NotifProviderUpgraded(s_notifProvider = newNotifProvider);
+    // }
 
     /**
      * INFLATION
